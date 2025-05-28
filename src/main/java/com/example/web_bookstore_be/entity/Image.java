@@ -11,12 +11,16 @@ public class Image {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_image")
     private int idImage; // Mã ảnh
+
     @Column(name = "name_image")
     private String nameImage; // Tên ảnh
+
     @Column(name = "is_thumbnail")
     private boolean isThumbnail; // Có phải là thumbnail không
+
     @Column(name = "url_image")
     private String urlImage; // Link hình ảnh
+
     @Column(name = "data_image", columnDefinition = "LONGTEXT")
     @Lob
     private String dataImage; // Dữ liệu ảnh
@@ -24,5 +28,4 @@ public class Image {
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "id_book", nullable = false)
     private Book book; // Thuộc quyển sách nào
-
 }
