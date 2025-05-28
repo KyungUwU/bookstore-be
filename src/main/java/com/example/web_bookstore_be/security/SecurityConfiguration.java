@@ -43,6 +43,7 @@ public class SecurityConfiguration {
         // Cấu hình phân quyền cho endpoint
         http.authorizeHttpRequests(
                 config->config
+                        .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-ui.html").permitAll()
                         .requestMatchers(HttpMethod.GET, Endpoints.PUBLIC_GET).permitAll()
                         .requestMatchers(HttpMethod.POST, Endpoints.PUBLIC_POST).permitAll()
                         .requestMatchers(HttpMethod.PUT, Endpoints.PUBLIC_PUT).permitAll()
@@ -65,7 +66,7 @@ public class SecurityConfiguration {
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
         http.sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.httpBasic(Customizer.withDefaults());
+        http.httpBasic(AbstractHttpConfigurer::disable);
         http.csrf(AbstractHttpConfigurer::disable);
 
         return http.build();

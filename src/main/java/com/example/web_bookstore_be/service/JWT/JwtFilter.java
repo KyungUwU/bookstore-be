@@ -24,7 +24,14 @@ public class JwtFilter extends OncePerRequestFilter {
     private UserSecurityService userSecurityService;
     @Override
     protected void doFilterInternal(HttpServletRequest request, @NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
-        try{
+        String path = request.getRequestURI();
+        if (path.startsWith("/swagger-ui") || path.startsWith("/v3/api-docs") || path.equals("/swagger-ui.html")) {
+            // Bỏ qua kiểm tra JWT cho swagger
+            filterChain.doFilter(request, response);
+            return;
+        }
+
+        try {
             String authHeader = request.getHeader("Authorization");
             String token = null;
             String username = null;
