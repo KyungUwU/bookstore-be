@@ -45,7 +45,7 @@ public class UserController {
             Authentication authentication = authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
             );
-            // Nếu xác thực thành công
+            //Nếu xác thực thành công
             if (authentication.isAuthenticated()) {
                 // Tạo token cho người dùng
                 final String jwtToken = jwtService.generateToken(loginRequest.getUsername());
