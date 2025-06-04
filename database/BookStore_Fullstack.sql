@@ -219,19 +219,6 @@ CREATE TABLE IF NOT EXISTS `cart_item` (
   CONSTRAINT `FKikbqppvx730nfh1pu7av14wr3` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`)
 ) ENGINE=InnoDB AUTO_INCREMENT=232 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-
-CREATE TABLE IF NOT EXISTS `delivery` (
-  `id_delivery` int(11) NOT NULL AUTO_INCREMENT,
-  `description` varchar(255) DEFAULT NULL,
-  `fee_delivery` double DEFAULT NULL,
-  `name_delivery` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id_delivery`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-INSERT INTO `delivery` (`id_delivery`, `description`, `fee_delivery`, `name_delivery`) VALUES
-	(1, 'Giao hàng tận nơi', 10000, 'Giao hàng tận nơi'),
-	(2, 'Tự lấy hàng tại cửa hàng', 0, 'Tự lấy hàng tại cửa hàng');
-
 CREATE TABLE IF NOT EXISTS `favorite_book` (
   `id_favorite_book` int(11) NOT NULL AUTO_INCREMENT,
   `id_book` int(11) NOT NULL,
